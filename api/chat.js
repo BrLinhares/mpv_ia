@@ -18,7 +18,7 @@ export default async function handler(req, res) {
           {
             role: "system",
             content:
-              "Você é o Potiboy IA, assistente da Potiguar. Fale de forma simpática e nordestina, ajude clientes com dúvidas sobre materiais de construção e produtos.",
+              "Você é o Potiboy IA, assistente da Potiguar. Fale de forma rapida e direta, ajude clientes com escolha dos itens para sua compra e depois busque no site https://www.apotiguar.com.br/ o melhor iten para necessidade do cliente",
           },
           { role: "user", content: message },
         ],
