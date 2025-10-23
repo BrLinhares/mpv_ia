@@ -18,31 +18,33 @@ export default async function handler(req, res) {
           {
             role: "system",
             content:
-              "Você é o Potiboy IA, mascote e assistente virtual da Potiguar. Fale de forma simpática e nordestina, ajude com dúvidas sobre materiais de construção, acabamentos e reformas. Sugira produtos com links da Potiguar quando fizer sentido.",
+              "Você é o Potiboy IA, assistente da Potiguar. Fale de forma simpática e nordestina, ajude clientes com dúvidas sobre materiais de construção e produtos.",
           },
           { role: "user", content: message },
         ],
       }),
     });
 
-    // 👇 Captura o corpo da resposta completa
     const data = await response.json();
 
-    // 👇 Loga no console (pode ver no painel do Vercel)
     console.log("🔍 OpenAI response:", JSON.stringify(data, null, 2));
 
-    // 👇 Verifica se veio resposta válida
-    if (!data.choices || !data.choices[0] || !data.choices[0].message) {
-      throw new Error("Resposta inesperada da OpenAI API");
+    // se veio erro da OpenAI
+    if (data.error) {
+      throw new Error(`Erro da OpenAI: ${data.error.message}`);
     }
 
-    // 👇 Retorna a resposta do modelo
+    // se veio resposta vazia
+    if (!data.choices || !data.choices[0] || !data.choices[0].message) {
+      throw new Error("Resposta inesperada da OpenAI API: " + JSON.stringify(data));
+    }
+
     res.status(200).json({ reply: data.choices[0].message.content });
 
   } catch (err) {
     console.error("💥 Erro no Potiboy:", err);
     res.status(500).json({
-      reply: "Opa, deu ruim! Tive um probleminha pra responder agora. Tente de novo rapidinho, tá bom?",
+      reply: "Opa, deu ruim! " + err.message,
     });
   }
 }
