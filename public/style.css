@@ -1,0 +1,120 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Botão flutuante */
+.chat-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #e2001a; /* vermelho Potiguar */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+
+.chat-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* Janela do chat */
+.chat-widget {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 320px;
+  max-width: 90%;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 999;
+}
+
+/* Cabeçalho */
+.chat-header {
+  background: #004aad; /* azul Potiguar */
+  color: #fff;
+  padding: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Área de mensagens */
+.chat-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  height: 300px;
+}
+
+/* Bolhas de mensagem */
+.msg {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.bubble {
+  padding: 8px 12px;
+  border-radius: 12px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.bubble.user {
+  background-color: #e2001a; /* vermelho Potiguar */
+  color: #fff;
+  align-self: flex-end;
+}
+
+.bubble.bot {
+  background-color: #f1f1f1;
+  color: #000;
+  align-self: flex-start;
+}
+
+.small {
+  font-size: 10px;
+  color: #555;
+  margin-top: 4px;
+}
+
+/* Input e botão */
+.chat-input {
+  display: flex;
+  border-top: 1px solid #ccc;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+}
+
+.chat-input button {
+  background-color: #e2001a; /* vermelho Potiguar */
+  color: white;
+  border: none;
+  padding: 0 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.chat-input button:hover {
+  background-color: #c00017;
+}
