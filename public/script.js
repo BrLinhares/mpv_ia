@@ -41,8 +41,26 @@ function appendUser(text){
 }
 
 function appendBot(text){
-  const div = document.createElement('div'); div.className='msg bot';
-  const b = document.createElement('div'); b.className='bubble bot'; b.textContent=text;
-  const s = document.createElement('div'); s.className='small'; s.textContent='— Sou o Potiboy IA, seu parceiro Potiguar pra cuidar da sua casa!';
-  b.appendChild(s); div.appendChild(b); messages.appendChild(div); messages.scrollTop = messages.scrollHeight;
+  const div = document.createElement('div');
+  div.className = 'msg bot';
+
+  const b = document.createElement('div');
+  b.className = 'bubble bot';
+
+  // Detecta se há link no formato [link=URL]Texto[/link] e transforma em botão clicável
+  const formattedText = text.replace(
+    /\[link=(.*?)\](.*?)\[\/link\]/g,
+    `<a href="$1" target="_blank" class="chat-link-btn">$2</a>`
+  );
+
+  b.innerHTML = formattedText; // Usa innerHTML para permitir o botão
+
+  const s = document.createElement('div');
+  s.className = 'small';
+  s.textContent = '— Sou o Potiboy IA, seu parceiro Potiguar pra cuidar da sua casa!';
+
+  b.appendChild(s);
+  div.appendChild(b);
+  messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
 }
